@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Aplikasi Obrolan Real-time</title>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form id="message-form"> <!-- Menambahkan elemen <form> -->
+      <input id="message-input" autocomplete="off" /><button type="submit">Kirim</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(function () {
+        const socket = io(); // Membuat objek socket.io untuk berkomunikasi dengan server.
+
+        $('#message-form').submit(function (e) { // Menggunakan form dengan id 'message-form'.
+          e.preventDefault(); // Mencegah perilaku bawaan pengiriman form.
+          socket.emit('chat message', $('#message-input').val()); // Mengirim pesan chat ke server.
+          $('#message-input').val(''); // Mengosongkan input pesan.
+          return false; // Menghentikan pengiriman form (tidak mereload halaman).
+        });
+
+        socket.on('chat message', function (msg) {
+          $('#messages').append($('<li>').text(msg)); // Menampilkan pesan chat ke dalam daftar pesan.
+        });
+      });
+    </script>
+  </body>
+</html>

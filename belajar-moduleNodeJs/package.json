@@ -1,0 +1,11 @@
+{
+  "name": "belajar-modulenodejs",
+  "version": "1.0.0",
+  "description": "Belajar Module Pada NodeJS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "U171N",
+  "license": "ISC"
+}
